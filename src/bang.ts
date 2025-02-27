@@ -2,6 +2,15 @@
 
 export const bangs = [
   {
+    c: "Tech",
+    d: "kagi.com",
+    r: 0,
+    s: "Kagi",
+    sc: "Search Engine",
+    t: "kagi",
+    u: "https://kagi.com/search?q={{{s}}}",
+  },
+  {
     c: "AI",
     d: "perplexity.ai",
     r: 0,
