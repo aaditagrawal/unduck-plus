@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  searchlock:
+    build: .
+    ports:
+      - "5345:3000"
+    restart: unless-stopped
