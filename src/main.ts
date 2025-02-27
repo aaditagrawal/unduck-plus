@@ -12,7 +12,7 @@ function noSearchDefaultPageRender() {
           <input
             type="text"
             class="url-input"
-            value="https://search.sys256.com?q=%s"
+            value="https://sea.sys256.com?q=%s"
             readonly
           />
           <button class="copy-button">
