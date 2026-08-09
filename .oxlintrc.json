@@ -1,11 +1,105 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["typescript", "unicorn", "oxc"],
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "promise"
+  ],
   "categories": {
-    "correctness": "error"
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn",
+    "style": "off",
+    "pedantic": "off",
+    "restriction": "off",
+    "nursery": "off"
   },
-  "rules": {},
   "env": {
-    "builtin": true
-  }
+    "browser": true,
+    "es2024": true
+  },
+  "rules": {
+    "no-console": "warn",
+    "import/no-cycle": "warn",
+    "import/no-anonymous-default-export": "error",
+    "import/no-default-export": "off",
+    "promise/no-new-statics": "error",
+    "promise/no-return-wrap": "error",
+    "promise/valid-params": "error",
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-non-null-assertion": "warn",
+    "unicorn/no-useless-undefined": "warn",
+    "unicorn/prefer-node-protocol": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/no-autofocus": "warn",
+    "jsx-a11y/prefer-tag-over-role": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "jsx-a11y/control-has-associated-label": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/interactive-supports-focus": "warn",
+    "vitest/require-mock-type-parameters": "off",
+    "unicorn/no-new-array": "warn",
+    "unicorn/no-useless-fallback-in-spread": "warn"
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/.turbo/**",
+    "**/tmp/**",
+    "**/*.min.js",
+    "**/generated/**",
+    "**/dev-dist/**",
+    "**/components/ui/**",
+    "**/src/components/ui/**"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.{test,spec}.{ts,js,mts,cts}",
+        "**/__tests__/**",
+        "**/tests/**",
+        "**/fixtures/**"
+      ],
+      "plugins": [
+        "vitest",
+        "jest"
+      ],
+      "rules": {
+        "no-console": "off",
+        "typescript/no-explicit-any": "warn",
+        "typescript/no-non-null-assertion": "off",
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": [
+        "**/bin/**",
+        "**/cli/**",
+        "**/scripts/**",
+        "**/cli.{ts,js,mts}",
+        "**/bin.{ts,js,mts}"
+      ],
+      "rules": {
+        "no-console": "off",
+        "import/no-default-export": "off",
+        "unicorn/no-process-exit": "off"
+      }
+    },
+    {
+      "files": [
+        "**/*.{config,configs}.{ts,js,mjs,cjs}",
+        "**/tsup.config.*",
+        "**/vitest.config.*"
+      ],
+      "rules": {
+        "import/no-default-export": "off",
+        "no-console": "off"
+      }
+    }
+  ]
 }
