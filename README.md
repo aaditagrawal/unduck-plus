@@ -15,6 +15,7 @@ I solved this by doing all of the work client side. Once you've gone to https://
 (the above was written by Theo.)
 
 Changes by Aadit:
+
 - Removed Theo's analytics tracking.
 - Added Perplexity and Kagi as providers.
 - Made it self hosting ready.
