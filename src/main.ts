@@ -12,7 +12,7 @@ function noSearchDefaultPageRender() {
           <input
             type="text"
             class="url-input"
-            value="https://sea.sys256.com?q=%s"
+            value="${window.location.origin}${window.location.pathname}?q=%s"
             readonly
           />
           <button class="copy-button">
@@ -46,8 +46,14 @@ function noSearchDefaultPageRender() {
   });
 }
 
-const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
-const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
+function readDefaultBang() {
+  try {
+    return localStorage.getItem("default-bang") ?? "g";
+  } catch {
+    return "g";
+  }
+}
+const defaultBang = bangs.find((b) => b.t === readDefaultBang()) ?? bangs.find((b) => b.t === "g");
 
 function getBangredirectUrl() {
   const url = new URL(window.location.href);
@@ -71,13 +77,13 @@ function getBangredirectUrl() {
   // Format of the url is:
   // https://www.google.com/search?q={{{s}}}
   const searchUrl = selectedBang?.u.replace(
-    "{{{s}}}",
+    /\{\{\{s\}\}\}/g,
     // Replace %2F with / to fix formats like "!ghr+t3dotgg/unduck"
     encodeURIComponent(cleanQuery).replace(/%2F/g, "/"),
   );
-  if (!searchUrl) return null;
+  if (!searchUrl || !selectedBang) return null;
 
-  return searchUrl;
+  return new URL(searchUrl, `https://${selectedBang.d}`).href;
 }
 
 function doRedirect() {

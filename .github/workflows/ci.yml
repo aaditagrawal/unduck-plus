@@ -64,6 +64,9 @@ jobs:
       - name: Typecheck
         run: bun run typecheck
 
+      - name: Regression tests
+        run: bun test
+
   build:
     name: Build
     runs-on: ubuntu-latest
