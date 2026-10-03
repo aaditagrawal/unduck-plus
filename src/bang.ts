@@ -14541,14 +14541,6 @@ export const bangs = [
   },
   {
     c: "Online Services",
-    d: "www.t3.chat",
-    s: "T3 Chat",
-    sc: "AI Chatbots",
-    t: "t3",
-    u: "https://www.t3.chat/new?q={{{s}}}",
-  },
-  {
-    c: "Online Services",
     d: "chat.mistral.ai",
     s: "Le Chat",
     sc: "AI Chatbots",
