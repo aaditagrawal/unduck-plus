@@ -13,13 +13,17 @@ if (query) {
   void import("./page");
 }
 
+function getBang(trigger: string) {
+  return Object.prototype.hasOwnProperty.call(bangs, trigger) ? bangs[trigger] : undefined;
+}
+
 function redirect(fullQuery: string) {
   const match = /!(\S+)/.exec(fullQuery);
   const candidate = match?.[1]?.toLowerCase();
   const entry =
-    (candidate ? bangs[candidate] : undefined) ??
-    bangs[localStorage.getItem("default-bang") ?? "g"] ??
-    bangs["g"];
+    (candidate ? getBang(candidate) : undefined) ??
+    getBang(localStorage.getItem("default-bang") ?? "g") ??
+    getBang("g");
   if (!entry) return;
 
   const [urlTemplate, domain] = typeof entry === "string" ? [entry, undefined] : entry;
