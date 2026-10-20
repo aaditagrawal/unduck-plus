@@ -53,6 +53,7 @@
     "**/tmp/**",
     "**/*.min.js",
     "**/generated/**",
+    "data/**",
     "**/dev-dist/**",
     "**/components/ui/**",
     "**/src/components/ui/**"

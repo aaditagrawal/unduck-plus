@@ -19,3 +19,14 @@ Changes by Aadit:
 - Removed Theo's analytics tracking.
 - Added Perplexity and Kagi as providers.
 - Made it self hosting ready.
+- Compacted the bang list into an O(1) lookup map and made the whole app precache, so redirects work fully offline.
+
+## Editing bangs
+
+The bang list lives in `data/bangs.ts` (custom overrides go at the top; first occurrence of a trigger wins). After editing it, regenerate the compact map the app actually ships:
+
+```
+bun run generate:bangs
+```
+
+This rewrites `src/bangs.json`, which is committed to the repo.
