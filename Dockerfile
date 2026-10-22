@@ -1,5 +1,9 @@
+FROM node:24.22.1-bookworm-slim AS node
+
 # Build stage
 FROM oven/bun:latest as build
+
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
 
 WORKDIR /app
 
@@ -15,6 +19,8 @@ RUN bun run build
 
 # Serve stage with Bun
 FROM oven/bun:latest
+
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
 
 WORKDIR /app
 
