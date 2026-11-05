@@ -10,6 +10,12 @@ if (query) {
   redirect(query);
 } else {
   // Homepage UI (and its CSS) is only fetched when there's nothing to redirect.
+  // Start CSS alongside the module; the page waits for its load before rendering.
+  const style = document.createElement("link");
+  style.rel = "preload";
+  style.as = "style";
+  style.href = stylesheetPath;
+  document.head.append(style);
   void import("./page");
 }
 
