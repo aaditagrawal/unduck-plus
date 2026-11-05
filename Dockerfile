@@ -17,21 +17,17 @@ COPY . .
 # Build the app
 RUN bun run build
 
-# Serve stage with Bun
+# Serve stage needs only the Bun platform, with no registry packages.
 FROM oven/bun:latest
-
-COPY --from=node /usr/local/bin/node /usr/local/bin/node
 
 WORKDIR /app
 
-# Install a simple HTTP server
-RUN bun add serve
-
 # Copy built assets from build stage
 COPY --from=build /app/dist /app/dist
+COPY scripts/server.mjs /app/scripts/server.mjs
 
 # Expose port
 EXPOSE 3000
 
 # Start the static file server
-CMD ["bunx", "serve", "dist", "-s", "-p", "3000"]
+CMD ["bun", "scripts/server.mjs", "dist"]
